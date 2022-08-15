@@ -9,14 +9,24 @@ import { userActions } from "../../Store/userStore/store";
 import style from "./style.module.css";
 import { getUserData, loginHandler } from '../../Store/userStore/actions.js';
 import { selectUserData } from '../../Store/userStore/userSelectors.js';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const dispatch = useDispatch();
   const userData = useSelector(selectUserData);
+  const navigate = useNavigate();
 
   const [loginData, setLogenData] = useState({email: "", password: ""});
 
   const onChange = (e) => setLogenData(o => ({...o, [e.target.name]: e.target.value}));
+
+  const loginUser = async () => {
+    let res = await dispatch(loginHandler(loginData));
+    console.log(res, 'res')
+    if(res) {
+      navigate("/profile")
+    }
+  }
 
   return (
     <Container maxWidth={500}>
@@ -43,7 +53,7 @@ function Login() {
         </Grid>
         <Grid item lg={12}>
         <Button variant="contained" onClick={async () => {
-         let res = await dispatch(loginHandler(loginData));
+         loginUser();
           // let res = await apiManager.postData("/identity/login", loginData);
           // if(res.isError === false) {
           //   localStorage.setItem("userToken", res?.token);

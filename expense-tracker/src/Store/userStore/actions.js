@@ -8,6 +8,7 @@ export const loginHandler = action => async dispatch => {
         let loginInfo = {email: action.email, password: action.password};
         let res = await apiManager.postData("/identity/login", loginInfo);
         setToken(res?.token);
+        dispatch(userActions.authuser());
         return res;
     } catch (ex) {
         return false;

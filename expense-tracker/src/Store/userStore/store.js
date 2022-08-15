@@ -19,6 +19,12 @@ const userSlice =  createSlice({
         setLogedUserData(state, action) {
             const userData = action.payload;
             state.userData = userData;
+        },
+        authuser(state, action) {
+            state.isAuth = true;
+        },
+        initiUserAuth(state, action) {
+            if(localStorage.getItem("userToken")) state.isAuth = true;
         }
     },
 });

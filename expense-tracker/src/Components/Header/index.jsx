@@ -9,7 +9,7 @@ export default function SearchAppBar() {
                 <Link to="/">home</Link>
             </li>
             <li style={{padding: "10px 35px"}}>
-                <Link to="/login">login</Link>
+                <Link to="/">login</Link>
             </li>
         </ul>
     </nav>
