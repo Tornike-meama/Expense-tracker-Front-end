@@ -6,10 +6,14 @@ const apiManager = class ApiManager {
     constructor() {
 
         axios.defaults.baseURL = 'https://localhost:44353';
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem("userToken") ?? "";
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem("userToken") ?  `Bearer ${localStorage.getItem("userToken")}` :  "";
         axios.defaults.withCredentials = false;
         //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     }
+
+    setTokenInHeader = (token = "") => {
+        axios.defaults.headers.common['Authorization'] = token ? `Bearer ${localStorage.getItem("userToken")}` :  "";;
+    };
 
     getData = async (endpoint) => {
         try {

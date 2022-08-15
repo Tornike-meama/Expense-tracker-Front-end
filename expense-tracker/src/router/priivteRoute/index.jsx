@@ -4,12 +4,12 @@ import { Navigate } from "react-router-dom";
 import Login from "../../pages/Login/index";
 import { selectAuth } from "../../Store/userStore/userSelectors.js";
 
-const PriviteRoute = ({component}) => {
+const PriviteRoute = ({Component}) => {
     const isAuth = useSelector(selectAuth);
 
-    if(!isAuth) return  <Navigate to="/login" />
+    if(!isAuth) return  <Navigate to="/" />
 
-    return <component />
+    return <Component />
 };
 
 export default PriviteRoute;

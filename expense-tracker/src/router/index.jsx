@@ -23,7 +23,7 @@ function MyRouter() {
     <Header />
       <Routes>
         <Route path="/" element={isAuth ? <Home /> : <Login />} />
-        <Route path='/profile' element={<PriviteRoute component={UserProfile} />} />
+        <Route path='/profile' element={<PriviteRoute Component={UserProfile} />} />
       </Routes>
     </BrowserRouter>
   );

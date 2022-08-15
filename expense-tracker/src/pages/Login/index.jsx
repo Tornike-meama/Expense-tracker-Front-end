@@ -1,19 +1,17 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 import { Button, Grid, TextField } from '@mui/material';
 import { Container } from '@mui/system';
 
-import { userActions } from "../../Store/userStore/store";
+import { getUserData, loginHandler } from '../../Store/userStore/actions.js';
 
 import style from "./style.module.css";
-import { getUserData, loginHandler } from '../../Store/userStore/actions.js';
-import { selectUserData } from '../../Store/userStore/userSelectors.js';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
   const dispatch = useDispatch();
-  const userData = useSelector(selectUserData);
   const navigate = useNavigate();
 
   const [loginData, setLogenData] = useState({email: "", password: ""});
@@ -22,9 +20,10 @@ function Login() {
 
   const loginUser = async () => {
     let res = await dispatch(loginHandler(loginData));
-    console.log(res, 'res')
     if(res) {
-      navigate("/profile")
+      navigate("/profile");
+      console.log(axios.defaults.headers.common['Authorization'])
+      await dispatch(getUserData());
     }
   }
 
@@ -59,14 +58,6 @@ function Login() {
           //   localStorage.setItem("userToken", res?.token);
           // }
         }}>Log In</Button>
-        <Button variant="contained" onClick={async () => {
-         let res = await dispatch(getUserData("ed45b449-6cde-43ac-a3b7-112d5d9aa46c"));
-         console.log(userData, 'userdata');
-          // let res = await apiManager.postData("/identity/login", loginData);
-          // if(res.isError === false) {
-          //   localStorage.setItem("userToken", res?.token);
-          // }
-        }}>get user data</Button>
         </Grid>
     </Grid>
     </Container>

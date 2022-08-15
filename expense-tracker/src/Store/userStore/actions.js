@@ -1,3 +1,4 @@
+import axios from 'axios';
 import apiManager from '../../apiManager/index.js';
 import { userActions } from './store';
 
@@ -9,6 +10,7 @@ export const loginHandler = action => async dispatch => {
         let res = await apiManager.postData("/identity/login", loginInfo);
         setToken(res?.token);
         dispatch(userActions.authuser());
+        apiManager.setTokenInHeader(res?.token);
         return res;
     } catch (ex) {
         return false;
@@ -17,10 +19,10 @@ export const loginHandler = action => async dispatch => {
     }
 };
 
-export const getUserData = userId => async dispatch => {
+export const getUserData = () => async dispatch => {
     try {
         dispatch(userActions.startLoading());
-        let res = await apiManager.getData(`/identity/getUserById/${userId}`);
+        let res = await apiManager.getData(`/identity/getUserData`);
         dispatch(userActions.setLogedUserData(res?.data));
         return res?.data;
     } catch (ex) {
