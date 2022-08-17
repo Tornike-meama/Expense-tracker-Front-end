@@ -15,20 +15,48 @@ const apiManager = class ApiManager {
         axios.defaults.headers.common['Authorization'] = token ? `Bearer ${localStorage.getItem("userToken")}` :  "";;
     };
 
+    handleException(ex) {
+        if(ex?.response !== undefined && ex?.response !== null) {
+            throw {
+                isError: true,
+                message: ex?.response?.data?.message ?? ex?.response?.data?.Message,
+            }
+            // don't touch this return.
+            return;
+        }
+    
+        if(ex?.message !== undefined && ex?.message !== null && ex?.message !== "") {
+            throw {
+                isError: true,
+                message: ex?.message,
+            }
+    
+            //don't touch this return.
+            return;
+        }
+         
+        return null;
+    };
+
+    wrapToMeamaResponse(axiosResponse) {
+        if(axiosResponse.data.isError) throw new Error(axiosResponse.data.message);
+        else return axiosResponse.data;
+    };
+
     getData = async (endpoint) => {
         try {
             let res = await axios.get(endpoint);
-            return res?.data;
+            return this.wrapToMeamaResponse(res);
         } catch(ex) {
-            return ex?.response?.data;
+            return this.handleException(ex);
         }
     };
     postData = async (endpoint, data) => {
         try {
             let res = await axios.post(endpoint, data);
-            return res?.data;
+            return this.wrapToMeamaResponse(res);
         } catch(ex) {
-            return ex?.response?.data;
+            return this.handleException(ex);
         }
     };
 };

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { removeToken } from "./actions.js";
 
 const initialState = {
     isLoading: false,
@@ -20,8 +21,12 @@ const userSlice =  createSlice({
             const userData = action.payload;
             state.userData = userData;
         },
-        authuser(state, action) {
+        loginUser(state, action) {
             state.isAuth = true;
+        },
+        logoutUser(state, action) {
+            state.isAuth = false;
+            removeToken();
         },
         initiUserAuth(state, action) {
             if(localStorage.getItem("userToken")) state.isAuth = true;

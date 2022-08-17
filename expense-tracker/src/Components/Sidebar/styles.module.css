@@ -1,0 +1,19 @@
+.navBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.navItem {
+    justify-content: center !important;
+    cursor: pointer;
+    font-size: 21px;
+}
+
+.arrowIcon {
+    justify-content: right !important;
+    font-size: 30px;
+    cursor: pointer;
+}
