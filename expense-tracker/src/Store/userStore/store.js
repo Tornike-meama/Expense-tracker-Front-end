@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { removeToken } from "./actions.js";
+import { removeToken } from "./helperMethods/index.jsx";
 
 const initialState = {
     isLoading: false,

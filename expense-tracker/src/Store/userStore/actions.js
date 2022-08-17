@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiManager from '../../apiManager/index.js';
+import { setToken } from './helperMethods/index.jsx';
 import { userActions } from './store';
 
 
@@ -13,7 +14,6 @@ export const loginHandler = action => async dispatch => {
         apiManager.setTokenInHeader(res?.token);
         return res;
     } catch (ex) {
-        console.log(ex)
         return false;
     } finally {
         dispatch(userActions.stopLoading());
@@ -39,8 +39,3 @@ export const initUser = () => async dispatch => {
     if(!res) dispatch(userActions.logoutUser());
     else dispatch(userActions.loginUser())
 }
-
-
-// static methods
-export const setToken = (token) => localStorage.setItem("userToken", token);
-export const removeToken = () => localStorage.removeItem("userToken");

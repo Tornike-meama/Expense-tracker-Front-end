@@ -21,8 +21,7 @@ function Login() {
   const loginUser = async () => {
     let res = await dispatch(loginHandler(loginData));
     if(res) {
-      navigate("/profile");
-      console.log(axios.defaults.headers.common['Authorization'])
+      // navigate("/profile");
       await dispatch(getUserData());
     }
   }
