@@ -7,23 +7,25 @@ import { userActions } from '../../Store/userStore/store.js';
 import { Link } from 'react-router-dom';
 
 const SideBar = ({setOpenDrawer}) => {
-    const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
-    return (
-        <List component="nav" className={`${styles.navBar} ${styles.close}`}>
-            <ListItem className={styles.arrowIcon}>
-                <MdArrowBackIos onClick={() => setOpenDrawer(o => !o)} />
-            </ListItem>
-            <ListItem className={styles.navItem}>
-                <Link to="/profile">profile</Link>
-            </ListItem>
-            <ListItem className={styles.navItem}>item1</ListItem>
-            <ListItem className={styles.navItem}>item1</ListItem>
-            <ListItem className={styles.navItem} onClick={() => dispatch(userActions.logoutUser())}>
-                logOut
-            </ListItem>
-        </List>
-    )
+   return (
+      <List component="nav" className={`${styles.navBar} ${styles.close}`}>
+         <ListItem className={styles.arrowIcon}>
+            <MdArrowBackIos onClick={() => setOpenDrawer(o => !o)} />
+         </ListItem>
+         <ListItem className={styles.avatar}>
+            <img src='https://localhost:44353/UploadFiles/NewTux.svg.png' />
+         </ListItem>
+         <ListItem className={styles.navItem}>
+            <Link to="/profile">profile</Link>
+         </ListItem>
+         <ListItem className={styles.navItem}>item1</ListItem>
+         <ListItem className={styles.navItem} onClick={() => dispatch(userActions.logoutUser())}>
+            logOut
+         </ListItem>
+      </List>
+   )
 };
 
 export default SideBar;

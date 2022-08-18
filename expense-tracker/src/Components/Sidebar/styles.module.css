@@ -12,6 +12,15 @@
     font-size: 21px;
 }
 
+.avatar {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.avatar img {
+    width: 70%;
+}
+
 .arrowIcon {
     justify-content: right !important;
     font-size: 30px;
