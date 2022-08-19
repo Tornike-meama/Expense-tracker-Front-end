@@ -17,7 +17,7 @@ function MyRouter() {
   const isAuth = useSelector(selectAuth);
 
   const [openDrawer, setOpenDrawer] = useState(true);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true);
 
   const userInit = async () => {
     await dispatch(initUser());
@@ -25,7 +25,7 @@ function MyRouter() {
   }
 
   useEffect(() => {
-    userInit();
+    // userInit();
   }, []);
 
   return (
@@ -33,7 +33,7 @@ function MyRouter() {
       <BrowserRouter>
       {/* <Header /> */}
       <Grid container>
-        <Grid item xs={4} maxWidth={190} style={{
+        <Grid item xs={2} maxWidth={190} style={{
               background: "red",
               height: "100vh",
               transition: "all 1s ease-out 0s",
@@ -41,10 +41,10 @@ function MyRouter() {
           }}>
           <SideBar setOpenDrawer={setOpenDrawer} />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={10}>
           <Routes>
-              <Route path="/" element={isAuth ? <Home /> : <Login />} />
-              <Route path='/profile' element={<PriviteRoute Component={UserProfile} />} />
+              <Route path="/" element={true ? <Home /> : <Login />} />
+              {/* <Route path='/profile' element={<PriviteRoute Component={UserProfile} />} /> */}
             </Routes>
         </Grid>
       </Grid>
