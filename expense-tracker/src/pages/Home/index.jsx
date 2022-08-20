@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Container } from "@mui/system";
-import { Grid} from '@mui/material';
+import { Grid, Typography} from '@mui/material';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -10,8 +10,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import styles from "./styles.module.css";
-import { MdAdd } from 'react-icons/md';
+import { MdAdd, MdOutlineShoppingBag } from 'react-icons/md';
 import SideStatistics from "../../Components/SideStatistics/index.jsx";
+import MyListItem from "../../Components/MyListItem/index.jsx";
 
 export const Home = () => {
 
@@ -56,7 +57,7 @@ export const Home = () => {
          </Box>
          <Box>
             <Grid container>
-               <Grid item container minHeight={40}>
+               <Grid item container minHeight={40} mt={6} mb={0 }>
                   <Grid item xs={6} textAlign="left">Recent transaction</Grid>
                   <Grid item xs={6} textAlign="right" >ViewAll</Grid>
                </Grid>
@@ -64,14 +65,18 @@ export const Home = () => {
                <TabContext value={tabValue}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                      <TabList onChange={(e, nexValue) => setTabvalue(nexValue)} aria-label="lab API tabs example">
-                        <Tab label="Item One" value="1" />
-                        <Tab label="Item Two" value="2" />
-                        <Tab label="Item Three" value="3" />
+                        <Tab label="All" value="1" />
+                        <Tab label="Income" value="2" />
+                        <Tab label="Expense" value="3" />
                      </TabList>
                   </Box>
-                  <TabPanel value="1">Item One</TabPanel>
-                  <TabPanel value="2">Item Two</TabPanel>
-                  <TabPanel value="3">Item Three</TabPanel>
+                  <TabPanel className={styles.tabPanel} value="1">
+                     <MyListItem color="#d5a3a2" />
+                     <MyListItem color="#a8c890" />
+                     <MyListItem color="#d5a3a2" />
+                  </TabPanel>
+                  <TabPanel className={styles.tabPanel} value="2">Item Two</TabPanel>
+                  <TabPanel className={styles.tabPanel} value="3">Item Three</TabPanel>
                </TabContext>
                </Grid>
             </Grid>

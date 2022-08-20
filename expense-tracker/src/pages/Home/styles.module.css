@@ -25,6 +25,66 @@
     max-width: 360px;
 }
 
+.tabPanel {
+    overflow-y: scroll;
+    background-color: #f5f7fb;
+    margin-top: 30px;
+    max-height: 200px;
+    border-radius: 20px;
+    min-width: 380px;
+}
+
+.tabPanel .tabPanelItem {
+    min-height: 85px;
+    border-bottom: 1px solid #000;
+    border-bottom-style: dashed;
+    align-items: center;
+    justify-content: center;
+}
+
+.typeIcon {
+    width: 49px;
+    height: 49px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typeIcon svg {
+    font-size: 25px;
+    color: #7d68b1;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.tabPanel::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #edeff1;
+}
+
+.tabPanel::-webkit-scrollbar
+{
+  width: 5px;
+}
+
+.tabPanel::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #d3d2d5;
+}
+
 /* .swiperSlide {
     width: auto !important;
     margin-right: 20px !important;
