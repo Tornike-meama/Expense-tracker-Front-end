@@ -10,6 +10,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import styles from "./styles.module.css";
+import { MdAdd } from 'react-icons/md';
+import SideStatistics from "../../Components/SideStatistics/index.jsx";
 
 export const Home = () => {
 
@@ -17,6 +19,7 @@ export const Home = () => {
 
    return (
       <Container>
+         <SideStatistics />
          <Box className={styles.upContainer}>
             <Grid container>
                <Grid item container minHeight={30}>
@@ -24,7 +27,9 @@ export const Home = () => {
                   <Grid item xs={11} textAlign="right" >10.25.20 December 2019</Grid>
                </Grid>
                <Grid container>
-                  <Grid xs={1}>Add</Grid>
+                  <Grid item xs={1}>
+                     <Box className={styles.addIcon}> <MdAdd /> </Box>
+                  </Grid>
                   <Grid item container xs={11}>
                      <Swiper
                         spaceBetween={-60}
