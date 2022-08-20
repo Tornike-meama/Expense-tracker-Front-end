@@ -1,25 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { MdAdd } from 'react-icons/md';
 import { Box, Container } from "@mui/system";
-import { Grid, Typography} from '@mui/material';
+import { Grid} from '@mui/material';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-import 'swiper/css';
-import styles from "./styles.module.css";
-import { MdAdd, MdOutlineShoppingBag } from 'react-icons/md';
+import { selectCurrentuserTransaction } from './../../Store/transactionStore/transactionSelectors';
+import { getCurrentUserTransactions } from './../../Store/transactionStore/actions';
 import SideStatistics from "../../Components/SideStatistics/index.jsx";
 import MyListItem from "../../Components/MyListItem/index.jsx";
 
-export const Home = () => {
+import 'swiper/css';
+import styles from "./styles.module.css";
 
+export const Home = () => {
+   const dispatch = useDispatch();
+
+   const currentUserTransactions = useSelector(selectCurrentuserTransaction);
    const [tabValue, setTabvalue] = useState("1");
 
+   useEffect(() => {
+      dispatch(getCurrentUserTransactions());
+   }, []);
+
    return (
-      <Container>
+      <Container ssd={console.log(currentUserTransactions)}>
          <SideStatistics />
          <Box className={styles.upContainer}>
             <Grid container>
@@ -71,9 +82,9 @@ export const Home = () => {
                      </TabList>
                   </Box>
                   <TabPanel className={styles.tabPanel} value="1">
-                     <MyListItem color="#d5a3a2" />
-                     <MyListItem color="#a8c890" />
-                     <MyListItem color="#d5a3a2" />
+                     {currentUserTransactions?.map(o => (
+                         <MyListItem amount={`${o?.currency?.symbol ?? ""} ${o?.amount}`} isInCome={o?.isIncome} category={o?.transactionType?.name} />
+                     ))}
                   </TabPanel>
                   <TabPanel className={styles.tabPanel} value="2">Item Two</TabPanel>
                   <TabPanel className={styles.tabPanel} value="3">Item Three</TabPanel>

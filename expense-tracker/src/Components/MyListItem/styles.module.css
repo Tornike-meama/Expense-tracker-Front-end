@@ -24,12 +24,12 @@
 
 .titleContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: column !important;
     align-items: flex-start;
 }
 
 .priceContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: column !important;
     align-items: flex-end;
 }

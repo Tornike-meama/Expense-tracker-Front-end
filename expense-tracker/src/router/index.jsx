@@ -43,7 +43,7 @@ function MyRouter() {
         </Grid>
         <Grid item xs={10}>
           <Routes>
-              <Route path="/" element={true ? <Home /> : <Login />} />
+              <Route path="/" element={isAuth ? <Home /> : <Login />} />
               {/* <Route path='/profile' element={<PriviteRoute Component={UserProfile} />} /> */}
             </Routes>
         </Grid>
