@@ -20,6 +20,34 @@
     border-bottom-right-radius: 25px;
 }
 
+.incomeContainer span {
+    width: 25px;
+    height: 25px;
+    background: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.incomeContainer svg {
+    transform: rotate(-45deg);
+    color: #77b774;
+}
+
+.upcomeContainer span {
+    width: 25px;
+    height: 25px;
+    background: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.upcomeContainer svg {
+    transform: rotate(-45deg);
+    color: #e19897;
+}
+
 .line {
     margin-top: 30px;
     margin-bottom: 20px;
